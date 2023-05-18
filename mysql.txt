@@ -1,0 +1,3 @@
+docker run --name mysql-local -p 3306:3306 -e MYSQL_ROOT_PASSWORD=xpto -v mysql:/var/lib/mysql -d mysql:8.0.33
+mysqlsh --mysql -u root -P 3306 -h localhost -C --sql
+ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'xpto';
