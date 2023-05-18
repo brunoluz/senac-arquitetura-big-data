@@ -224,9 +224,9 @@ CREATE TABLE IF NOT EXISTS arquitetura_big_data.MICRODADOS_CADASTRO_IES_2021(
   CO_IES DECIMAL(8) COMMENT 'Código único de identificação da IES',
   NO_IES CHAR(200) COMMENT 'Nome da IES',
   SG_IES CHAR(20) COMMENT 'Sigla da IES',
-  DS_ENDERECO_IES CHAR(255) COMMENT 'Endereço da sede administrativa/reitoria da IES',
-  DS_NUMERO_ENDERECO_IES CHAR(10) COMMENT 'Número do endereço',
-  DS_COMPLEMENTO_ENDERECO_IES CHAR(20) COMMENT 'Complemento do endereço',
+  DS_ENDERECO_IES VARCHAR(255) COMMENT 'Endereço da sede administrativa/reitoria da IES',
+  DS_NUMERO_ENDERECO_IES VARCHAR(100) COMMENT 'Número do endereço',
+  DS_COMPLEMENTO_ENDERECO_IES VARCHAR(1000) COMMENT 'Complemento do endereço',
   NO_BAIRRO_IES CHAR(50) COMMENT 'Bairro',
   NU_CEP_IES DECIMAL(8) COMMENT 'CEP',
   QT_TEC_TOTAL DECIMAL(8) COMMENT 'Quantidade de funcionários técnico-administrativos',
@@ -284,5 +284,8 @@ CREATE TABLE IF NOT EXISTS arquitetura_big_data.MICRODADOS_CADASTRO_IES_2021(
   QT_DOC_EX_COR_ND DECIMAL(8) COMMENT 'Quantidade de docentes em exercício - Cor/Raça não dispõe da informação ou não declarada',
   QT_DOC_EX_BRA DECIMAL(8) COMMENT 'Quantidade de docentes em exercício - nacionalidade brasileira ou brasileira - nascido no exterior ou naturalizado',
   QT_DOC_EX_EST DECIMAL(8) COMMENT 'Quantidade de docentes em exercício - nacionalidade estrangeira',
-  QT_DOC_EX_COM_DEFICIENCIA DECIMAL(8) COMMENT 'Quantidade de docentes em exercício - com deficiência'
+  QT_DOC_EX_COM_DEFICIENCIA DECIMAL(8) COMMENT 'Quantidade de docentes em exercício - com deficiência',
+  CO_PROJETO DECIMAL(7) COMMENT 'NAO ESTA NO DICIONARIO DE DADOS',
+  CO_LOCAL_OFERTA DECIMAL(7) COMMENT 'NAO ESTA NO DICIONARIO DE DADOS',
+  NO_LOCAL_OFERTA VARCHAR(1000) COMMENT 'NAO ESTA NO DICIONARIO DE DADOS'
 );

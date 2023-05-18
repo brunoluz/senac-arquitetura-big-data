@@ -4,10 +4,21 @@ import mysql.connector
 import zipfile
 import os
 import glob
+import dotenv
 
-mysql_host = 'localhost'
-mysql_user = 'root'
-mysql_pass = 'xpto'
+mysql_host = None
+mysql_user = None
+mysql_pass = None
+
+
+def carregar_variaveis_ambiente():
+    global mysql_host
+    global mysql_user
+    global mysql_pass
+    dotenv.load_dotenv('configuracoes.env')
+    mysql_host = os.getenv('MYSQL_HOST')
+    mysql_user = os.getenv('MYSQL_USER')
+    mysql_pass = os.getenv('MYSQL_PASS')
 
 
 def extrair_dados_zip():
@@ -60,7 +71,28 @@ def carregar_dados_MICRODADOS_CADASTRO_CURSOS_2021():
     mydb.close()
 
 
+def carregar_dados_MICRODADOS_CADASTRO_IES_2021():
+    df_cadastro_ies = pd.read_csv('MICRODADOS_CADASTRO_IES_2021.CSV', sep=';', encoding='latin-1')
+    df_cadastro_ies = df_cadastro_ies.replace(np.nan, None)
+    dados = df_cadastro_ies.values.tolist()
+
+    query = """
+    INSERT INTO arquitetura_big_data.MICRODADOS_CADASTRO_IES_2021 (NU_ANO_CENSO, NO_REGIAO_IES, CO_REGIAO_IES, NO_UF_IES, SG_UF_IES, CO_UF_IES, NO_MUNICIPIO_IES, CO_MUNICIPIO_IES, IN_CAPITAL_IES, NO_MESORREGIAO_IES, CO_MESORREGIAO_IES, NO_MICRORREGIAO_IES, CO_MICRORREGIAO_IES, TP_ORGANIZACAO_ACADEMICA, TP_CATEGORIA_ADMINISTRATIVA, NO_MANTENEDORA, CO_MANTENEDORA, CO_IES, NO_IES, SG_IES, DS_ENDERECO_IES, DS_NUMERO_ENDERECO_IES, DS_COMPLEMENTO_ENDERECO_IES, NO_BAIRRO_IES, NU_CEP_IES, QT_TEC_TOTAL, QT_TEC_FUNDAMENTAL_INCOMP_FEM, QT_TEC_FUNDAMENTAL_INCOMP_MASC, QT_TEC_FUNDAMENTAL_COMP_FEM, QT_TEC_FUNDAMENTAL_COMP_MASC, QT_TEC_MEDIO_FEM, QT_TEC_MEDIO_MASC, QT_TEC_SUPERIOR_FEM, QT_TEC_SUPERIOR_MASC, QT_TEC_ESPECIALIZACAO_FEM, QT_TEC_ESPECIALIZACAO_MASC, QT_TEC_MESTRADO_FEM, QT_TEC_MESTRADO_MASC, QT_TEC_DOUTORADO_FEM, QT_TEC_DOUTORADO_MASC, IN_ACESSO_PORTAL_CAPES, IN_ACESSO_OUTRAS_BASES, IN_ASSINA_OUTRA_BASE, IN_REPOSITORIO_INSTITUCIONAL, IN_BUSCA_INTEGRADA, IN_SERVICO_INTERNET, IN_PARTICIPA_REDE_SOCIAL, IN_CATALOGO_ONLINE, QT_PERIODICO_ELETRONICO, QT_LIVRO_ELETRONICO, QT_DOC_TOTAL, QT_DOC_EXE, QT_DOC_EX_FEMI, QT_DOC_EX_MASC, QT_DOC_EX_SEM_GRAD, QT_DOC_EX_GRAD, QT_DOC_EX_ESP, QT_DOC_EX_MEST, QT_DOC_EX_DOUT, QT_DOC_EX_INT, QT_DOC_EX_INT_DE, QT_DOC_EX_INT_SEM_DE, QT_DOC_EX_PARC, QT_DOC_EX_HOR, QT_DOC_EX_0_29, QT_DOC_EX_30_34, QT_DOC_EX_35_39, QT_DOC_EX_40_44, QT_DOC_EX_45_49, QT_DOC_EX_50_54, QT_DOC_EX_55_59, QT_DOC_EX_60_MAIS, QT_DOC_EX_BRANCA, QT_DOC_EX_PRETA, QT_DOC_EX_PARDA, QT_DOC_EX_AMARELA, QT_DOC_EX_INDIGENA, QT_DOC_EX_COR_ND, QT_DOC_EX_BRA, QT_DOC_EX_EST, QT_DOC_EX_COM_DEFICIENCIA, CO_PROJETO, CO_LOCAL_OFERTA, NO_LOCAL_OFERTA)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """
+
+    mydb = mysql.connector.connect(host=mysql_host, user=mysql_user, passwd=mysql_pass)
+    mycursor = mydb.cursor()
+    mycursor.executemany(query, dados)
+    mydb.commit()
+    mycursor.close()
+    mydb.close()
+
+
 if __name__ == '__main__':
+    carregar_variaveis_ambiente()
     extrair_dados_zip()
     criar_camada_bronze_mysql()
-    # carregar_dados_MICRODADOS_CADASTRO_CURSOS_2021()
+    carregar_dados_MICRODADOS_CADASTRO_CURSOS_2021()
+    carregar_dados_MICRODADOS_CADASTRO_IES_2021()
+    limpar_arquivos_csv()
