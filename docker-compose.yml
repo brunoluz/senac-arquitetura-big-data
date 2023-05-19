@@ -1,0 +1,19 @@
+version: "3"
+services:
+  db:
+    container_name: mysql_container
+    image: mysql:5.7
+    volumes:
+      - ./camada_bronze.sql:/docker-entrypoint-initdb.d/camada_bronze.sql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_INITDB_ARGS: --max_allowed_packet=64M
+  app:
+    container_name: python_app
+    links:
+      - "db"
+    build: ./
+    ports:
+      - "5001:5000"

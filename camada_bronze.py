@@ -9,16 +9,19 @@ import dotenv
 mysql_host = None
 mysql_user = None
 mysql_pass = None
+mysql_port = None
 
 
 def carregar_variaveis_ambiente():
     global mysql_host
     global mysql_user
     global mysql_pass
+    global mysql_port
     dotenv.load_dotenv('configuracoes.env')
     mysql_host = os.getenv('MYSQL_HOST')
     mysql_user = os.getenv('MYSQL_USER')
     mysql_pass = os.getenv('MYSQL_PASS')
+    mysql_port = os.getenv('MYSQL_PORT')
 
 
 def extrair_dados_zip():
@@ -35,7 +38,7 @@ def criar_camada_bronze_mysql():
     with open('camada_bronze.sql', 'r') as file:
         data = ''.join(file.readlines())
 
-    mydb = mysql.connector.connect(host=mysql_host, user=mysql_user, passwd=mysql_pass)
+    mydb = mysql.connector.connect(host=mysql_host, user=mysql_user, passwd=mysql_pass, port=3306)
     mycursor = mydb.cursor()
     mycursor.execute(data)
     mycursor.close()
@@ -59,7 +62,7 @@ def carregar_dados_MICRODADOS_CADASTRO_CURSOS_2021():
 
     # insere dados no banco de dados em lotes de 20.000.
     # se tentar inserir tudo de uma vez, apresenta erro.
-    n = 20000
+    n = 2000
     valores = df_cadastro_cursos.values.tolist()
     chunks = [valores[i * n:(i + 1) * n] for i in range((len(valores) + n - 1) // n)]
     for chunk in chunks:
@@ -96,3 +99,4 @@ if __name__ == '__main__':
     carregar_dados_MICRODADOS_CADASTRO_CURSOS_2021()
     carregar_dados_MICRODADOS_CADASTRO_IES_2021()
     limpar_arquivos_csv()
+    print("Processo finalizado...")

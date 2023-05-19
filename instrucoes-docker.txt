@@ -1,0 +1,5 @@
+Rodar os comandos na ordem:
+
+docker-compose up -d --build
+
+docker-compose run app
