@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS arquitetura_big_data;
 
-CREATE TABLE IF NOT EXISTS arquitetura_big_data.MICRODADOS_CADASTRO_CURSOS_2021(
+CREATE TABLE IF NOT EXISTS arquitetura_big_data.MICRODADOS_CADASTRO_CURSOS(
   NU_ANO_CENSO DECIMAL(4) COMMENT 'Ano de referência do Censo da Educação Superior',
   NO_REGIAO CHAR(20) COMMENT 'Nome da região geográfica do local de oferta do curso',
   CO_REGIAO DECIMAL(2) COMMENT 'Código da região geográfica do local de oferta do curso',
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS arquitetura_big_data.MICRODADOS_CADASTRO_CURSOS_2021(
   QT_CONC_MOB_ACADEMICA DECIMAL(8) COMMENT 'Quantidade de concluintes que se vincularam temporariamente a outra instituição, sendo ela nacional ou internacional'
 );
 
-CREATE TABLE IF NOT EXISTS arquitetura_big_data.MICRODADOS_CADASTRO_IES_2021(
+CREATE TABLE IF NOT EXISTS arquitetura_big_data.MICRODADOS_CADASTRO_IES(
   NU_ANO_CENSO DECIMAL(4) COMMENT 'Ano de referência do Censo da Educação Superior',
   NO_REGIAO_IES CHAR(20) COMMENT 'Nome da região geográfica da sede administrativa ou reitoria da IES',
   CO_REGIAO_IES DECIMAL(2) COMMENT 'Código da região geográfica da sede administrativa ou reitoria da IES',
@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS arquitetura_big_data.MICRODADOS_CADASTRO_IES_2021(
   CO_MICRORREGIAO_IES DECIMAL(5) COMMENT 'Código da Microrregião da sede administrativa ou reitoria da IES',
   TP_ORGANIZACAO_ACADEMICA DECIMAL(1) COMMENT 'Tipo de Organização Acadêmica da IES',
   TP_CATEGORIA_ADMINISTRATIVA DECIMAL(1) COMMENT 'Tipo de Categoria Administrativa da IES',
-  NO_MANTENEDORA CHAR(100) COMMENT 'Nome da mantenedora da IES',
+  NO_MANTENEDORA VARCHAR(200) COMMENT 'Nome da mantenedora da IES',
   CO_MANTENEDORA DECIMAL(8) COMMENT 'Código único de identificação da mantenedora da IES',
   CO_IES DECIMAL(8) COMMENT 'Código único de identificação da IES',
   NO_IES CHAR(200) COMMENT 'Nome da IES',

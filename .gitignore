@@ -2,3 +2,4 @@ __MACOSX/
 .idea/
 venv/
 configuracoes.env
+.DS_Store

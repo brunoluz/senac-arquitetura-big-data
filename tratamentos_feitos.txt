@@ -1,0 +1,4 @@
+fonte: https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-da-educacao-superior
+
+MICRODADOS_CADASTRO_CURSOS_2020.CSV - renomeei a coluna CO_CINE_ROTULO2 para CO_CINE_ROTULO
+MICRODADOS_CADASTRO_IES.NO_MANTENEDORA -> CHAR(100) para VARCHAR(200)
