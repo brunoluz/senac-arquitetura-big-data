@@ -38,7 +38,7 @@ def criar_camada_bronze_mysql():
     with open('camada_bronze.sql', 'r') as file:
         data = ''.join(file.readlines())
 
-    mydb = mysql.connector.connect(host=mysql_host, user=mysql_user, passwd=mysql_pass, port=3306)
+    mydb = mysql.connector.connect(host=mysql_host, user=mysql_user, passwd=mysql_pass, port=mysql_port)
     mycursor = mydb.cursor()
     mycursor.execute(data)
     mycursor.close()
