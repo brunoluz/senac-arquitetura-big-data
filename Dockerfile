@@ -1,7 +1,6 @@
 FROM python:3.9
 COPY . .
-RUN pip install mysql-connector-python==8.0.33 \
-    pandas==2.0.1 numpy==1.24.3 python-dotenv==1.0.0
+RUN pip install -r requirements.txt
 
 ENV MYSQL_HOST=mysql_container
 ENV MYSQL_USER=root
