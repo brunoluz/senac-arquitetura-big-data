@@ -103,6 +103,7 @@ def carregar_dados_MICRODADOS_CADASTRO_IES(filename):
 
 if __name__ == '__main__':
     carregar_variaveis_ambiente()
+    limpar_arquivos_csv()
     extrair_dados_zip()
     criar_camada_bronze_mysql()
     carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2021.CSV')
