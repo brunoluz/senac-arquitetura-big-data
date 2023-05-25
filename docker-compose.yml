@@ -4,7 +4,7 @@ services:
     container_name: mysql_container
     image: mysql:5.7
     volumes:
-      - ./camada_bronze.sql:/docker-entrypoint-initdb.d/camada_bronze.sql
+      - ./camada_bronze.sql:/docker-entrypoint-initdb.d/cria_camadas.sql
     ports:
       - "3306:3306"
     environment:
