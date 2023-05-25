@@ -45,8 +45,11 @@ def criar_camada_bronze_mysql():
     mydb.close()
 
 
-def carregar_dados_MICRODADOS_CADASTRO_CURSOS(filename):
-    df_cadastro_cursos = pd.read_csv(filename, sep=';', encoding='latin-1')
+def carregar_dados_MICRODADOS_CADASTRO_CURSOS(filename, encoding):
+    df_cadastro_cursos = pd.read_csv(filename, sep=';', encoding=encoding)
+
+    if 'CO_CINE_ROTULO' not in df_cadastro_cursos.columns and 'CO_CINE_ROTULO2' in df_cadastro_cursos.columns:
+        df_cadastro_cursos.rename(columns={'CO_CINE_ROTULO2': 'CO_CINE_ROTULO'}, inplace=True)
 
     # substitui nan por None
     df_cadastro_cursos = df_cadastro_cursos.replace(np.nan, None)
@@ -106,11 +109,11 @@ if __name__ == '__main__':
     limpar_arquivos_csv()
     extrair_dados_zip()
     criar_camada_bronze_mysql()
-    carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2021.CSV')
-    carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2020.CSV')
-    carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2019.CSV')
-    carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2018.CSV')
-    carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2017.CSV')
+    carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2021.CSV', 'latin-1')
+    carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2020.CSV', 'latin-1')
+    carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2019.CSV', 'latin-1')
+    carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2018.CSV', 'latin-1')
+    carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2017.CSV', 'latin-1')
     carregar_dados_MICRODADOS_CADASTRO_IES('MICRODADOS_CADASTRO_IES_2021.CSV')
     carregar_dados_MICRODADOS_CADASTRO_IES('MICRODADOS_CADASTRO_IES_2020.CSV')
     carregar_dados_MICRODADOS_CADASTRO_IES('MICRODADOS_CADASTRO_IES_2019.CSV')
