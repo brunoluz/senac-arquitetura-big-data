@@ -42,3 +42,7 @@ git update-index --assume-unchanged configuracoes.env
    - **camada_bronze.py** - Popula as tabelas referentes aos dados brutos
    - **camada_prata.py** - Popula a tabela de métricas de ingressantes, matriculados e concluintes por instituicao e ano.
    - **camada_ouro.py** - Popula a tabela de métricas de crescimento por instituicao de ensino e ano.
+
+# Arquitetura
+
+![Arquitetura](arquitetura/arquitetura.drawio.png)
