@@ -39,6 +39,6 @@ git update-index --assume-unchanged configuracoes.env
     - MYSQL_DB: Nome do database que comportará as tabelas deste projeto (Recomendadmos *arquitetura_big_data*)
 2. Executar o comando docker-compose up para subir o container do MySQL (se necessário).
 3. Executar em sequencia os arquintes arquivos
-   1. camada_bronze.py - Popula as tabelas referentes aos dados brutos
-   2. camada_prata.py - Popula a tabela de métricas de ingressantes, matriculados e concluintes por instituicao e ano.
-   3. camada_ouro.py - Popula a tabela de métricas de crescimento por instituicao de ensino e ano.
+   - **camada_bronze.py** - Popula as tabelas referentes aos dados brutos
+   - **camada_prata.py** - Popula a tabela de métricas de ingressantes, matriculados e concluintes por instituicao e ano.
+   - **camada_ouro.py** - Popula a tabela de métricas de crescimento por instituicao de ensino e ano.
