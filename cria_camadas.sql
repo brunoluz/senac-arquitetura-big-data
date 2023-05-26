@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS bronze_MICRODADOS_CADASTRO_CURSOS(
+CREATE DATABASE IF NOT EXISTS arquitetura_big_data;
+
+CREATE TABLE IF NOT EXISTS arquitetura_big_data.bronze_MICRODADOS_CADASTRO_CURSOS(
   NU_ANO_CENSO DECIMAL(4) COMMENT 'Ano de referência do Censo da Educação Superior',
   NO_REGIAO CHAR(20) COMMENT 'Nome da região geográfica do local de oferta do curso',
   CO_REGIAO DECIMAL(2) COMMENT 'Código da região geográfica do local de oferta do curso',
@@ -12,7 +14,7 @@ CREATE TABLE IF NOT EXISTS bronze_MICRODADOS_CADASTRO_CURSOS(
   TP_ORGANIZACAO_ACADEMICA DECIMAL(1) COMMENT 'Tipo de Organização Acadêmica da IES',
   TP_CATEGORIA_ADMINISTRATIVA DECIMAL(1) COMMENT 'Tipo de Categoria Administrativa da IES',
   TP_REDE DECIMAL(1) COMMENT 'Rede de Ensino',
-  CO_IES DECIMAL(8) COMMENT 'Código da Instituição ',
+  CO_IES DECIMAL(8) COMMENT 'Código da Instituição',
   NO_CURSO CHAR(200) COMMENT 'Nome do Curso',
   CO_CURSO DECIMAL(8) COMMENT 'Código do Curso',
   NO_CINE_ROTULO CHAR(120) COMMENT 'Nome do curso, conforme adaptação da Classificação Internacional Normalizada da Educação Cine/Unesco',
@@ -201,7 +203,7 @@ CREATE TABLE IF NOT EXISTS bronze_MICRODADOS_CADASTRO_CURSOS(
   QT_CONC_MOB_ACADEMICA DECIMAL(8) COMMENT 'Quantidade de concluintes que se vincularam temporariamente a outra instituição, sendo ela nacional ou internacional'
 );
 
-CREATE TABLE IF NOT EXISTS bronze_MICRODADOS_CADASTRO_IES(
+CREATE TABLE IF NOT EXISTS arquitetura_big_data.bronze_MICRODADOS_CADASTRO_IES(
   NU_ANO_CENSO DECIMAL(4) COMMENT 'Ano de referência do Censo da Educação Superior',
   NO_REGIAO_IES CHAR(20) COMMENT 'Nome da região geográfica da sede administrativa ou reitoria da IES',
   CO_REGIAO_IES DECIMAL(2) COMMENT 'Código da região geográfica da sede administrativa ou reitoria da IES',
@@ -288,7 +290,7 @@ CREATE TABLE IF NOT EXISTS bronze_MICRODADOS_CADASTRO_IES(
   NO_LOCAL_OFERTA VARCHAR(1000) COMMENT 'NAO ESTA NO DICIONARIO DE DADOS'
 );
 
-CREATE TABLE IF NOT EXISTS prata_metricas_ingressantes_matriculados_concluintes (
+CREATE TABLE IF NOT EXISTS arquitetura_big_data.prata_metricas_ingressantes_matriculados_concluintes (
    NU_ANO_CENSO DECIMAL(4) NOT NULL COMMENT 'Ano de referência do Censo da Educação Superior',
    CO_IES DECIMAL(8) NOT NULL COMMENT 'Código único de identificação da IES',
    NO_IES VARCHAR(200) NOT NULL COMMENT 'Nome da IES',
@@ -297,7 +299,7 @@ CREATE TABLE IF NOT EXISTS prata_metricas_ingressantes_matriculados_concluintes 
    total_concluintes int not null COMMENT 'Total de alunos concluintes'
 );
 
-CREATE TABLE IF NOT EXISTS ouro_crescimento_ingressantes_matriculados_concluintes(
+CREATE TABLE IF NOT EXISTS arquitetura_big_data.ouro_crescimento_ingressantes_matriculados_concluintes(
    NU_ANO_CENSO DECIMAL(4) NOT NULL COMMENT 'Ano de referência do Censo da Educação Superior',
    NU_ANO_CENSO_anterior DECIMAL(4) COMMENT 'Ano de referência do Censo da Educação Superior de referência ao ano anterior para comparação',
    CO_IES DECIMAL(8) NOT NULL COMMENT 'Código único de identificação da IES',

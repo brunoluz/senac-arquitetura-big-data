@@ -3,10 +3,7 @@ Rodar os comandos na ordem:
 docker-compose up -d --build
 
 docker-compose run app
+docker-compose run -v ./:/app python_app
 
-
-Deletar os containers e volumes:
-docker rm -vf $(docker ps -aq) && docker volume prune -f
-
-Remover apenas volume do mysql:
+Deletar container e volume do mysql:
 docker rm -v mysql_container
