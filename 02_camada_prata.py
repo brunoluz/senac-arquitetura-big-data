@@ -17,6 +17,7 @@ group by cursos.NU_ANO_CENSO, cursos.CO_IES, instituicoes.NO_IES;
 def executar_camada_prata():
     mydb = utilidades.criar_conexao()
     mycursor = mydb.cursor()
+    print("Executando query \n")
     mycursor.execute(query)
     mydb.commit()
     mycursor.close()
@@ -24,5 +25,6 @@ def executar_camada_prata():
 
 
 if __name__ == '__main__':
+    print("Iniciando camada prata...\n")
     executar_camada_prata()
     print("Camada prata processada...")

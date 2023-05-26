@@ -31,6 +31,7 @@ left join prata_metricas_ingressantes_matriculados_concluintes anterior on atual
 def executar_camada_ouro():
     mydb = utilidades.criar_conexao()
     mycursor = mydb.cursor()
+    print("Executando query \n")
     mycursor.execute(query)
     mydb.commit()
     mycursor.close()
@@ -38,5 +39,6 @@ def executar_camada_ouro():
 
 
 if __name__ == '__main__':
+    print("Iniciando camada ouro...\n")
     executar_camada_ouro()
     print("Camada ouro processada...")

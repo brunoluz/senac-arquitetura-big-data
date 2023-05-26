@@ -29,6 +29,7 @@ def criar_camadas():
 
 
 def carregar_dados_MICRODADOS_CADASTRO_CURSOS(filename, encoding):
+    print(f"Carregando arquivo {filename}")
     df_cadastro_cursos = pd.read_csv(filename, sep=';', encoding=encoding)
 
     if 'CO_CINE_ROTULO' not in df_cadastro_cursos.columns and 'CO_CINE_ROTULO2' in df_cadastro_cursos.columns:
