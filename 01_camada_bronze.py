@@ -17,7 +17,7 @@ def limpar_arquivos_csv():
         os.remove(f)
 
 
-def criar_camada_bronze_mysql():
+def criar_camadas():
     with open('cria_camadas.sql', 'r') as file:
         data = ''.join(file.readlines())
 
@@ -90,7 +90,7 @@ def carregar_dados_MICRODADOS_CADASTRO_IES(filename):
 if __name__ == '__main__':
     limpar_arquivos_csv()
     extrair_dados_zip()
-    criar_camada_bronze_mysql()
+    criar_camadas()
     carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2021.CSV', 'latin-1')
     carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2020.CSV', 'latin-1')
     carregar_dados_MICRODADOS_CADASTRO_CURSOS('MICRODADOS_CADASTRO_CURSOS_2019.CSV', 'latin-1')
