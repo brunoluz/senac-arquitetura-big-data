@@ -88,3 +88,7 @@ superior. A tabela referente a esta camada está listada abaixo e seu conteúdo 
 - Engenheiros de dados
 - Engenheiros de sofware
 - Analistas de dados
+
+
+# Dataviz
+https://lookerstudio.google.com/reporting/3aa20d6c-2da4-4b31-b155-f2378f7dc022
