@@ -1,12 +1,6 @@
-# Fonte de dados
-https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-da-educacao-superior
+# Objetivo
 
-# Controle de versão
-Por algum motivo está sendo necessário executar o comando abaixo para que o arquivo configuracoes.env nao seja rastreado pelo git.
-```
-git update-index --assume-unchanged configuracoes.env 
-```
-
+Este projeto tem o objetivo de fornecer um processo de Extração, Transformação e Visualização de dados referentes aos cursos, instituições de ensino e taxa selic.
 
 # Escopo do projeto
 
@@ -46,3 +40,51 @@ git update-index --assume-unchanged configuracoes.env
 # Arquitetura
 
 ![Arquitetura](arquitetura/arquitetura.drawio.png)
+
+# Fontes de dados
+
+Os dados utilizados nesta solução são de origem do Governo Federal
+
+Dados do INEP – Instituto Nacional de Estudos e Pesquisas Educacionais
+Anísio Teixeira. São recuperados dados de cursos e instituições de ensino superior. Os dados estão disponíveis para download através do link
+https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo
+-da-educacao-superior.
+
+
+Dados do Banco Central do Brasil. São recuperados dados de Taxa Selic. O dado está disponível para download através do link https://dadosabertos.bcb.gov.br/dataset/11-taxa-de-juros---selic
+
+# Fluxo de dados
+
+Temos 3 camadas dentro da nossa estrutura de processamento de dados.
+
+**Camada Bronze** – Responsável por armazenar o dado bruto. O dado é
+armazenado no banco de dados MySQL da maneira o mais fiel possível à sua
+origem. As tabelas desta camada estão listadas abaixo e são populadas através do
+script *camada_bronze.py*.
+- bronze_MICRODADOS_CADASTRO_CURSOS
+- bronze_MICRODADOS_CADASTRO_IES
+
+**Camada Prata** – Responsável por armazenar os dados de métricas de
+ingressantes, matriculados e concluintes agrupados por instituição de ensino
+superior. A tabela referente a esta camada está listada abaixo e seu conteúdo é gerado através do script *camada_prata.py*.
+- prata_metricas_ingressantes_matriculados_concluintes
+
+
+**Camada Ouro** – Responsável por armazenar os dados processados de crescimento
+de ingressantes, matriculados e concluintes agrupados por instituição de ensino
+superior. A tabela referente a esta camada está listada abaixo e seu conteúdo é gerado através do script *camada_ouro.py*.
+- ouro_crescimento_ingressantes_matriculados_concluintes
+
+# Ferramentas e tecnologias utilizadas:
+- Python 3
+    - pandas
+    - numpy
+    - dotenv
+- Docker
+- MySQL
+- Google Data Studio
+
+# Recursos humanos para operação e sustentação:
+- Engenheiros de dados
+- Engenheiros de sofware
+- Analistas de dados
