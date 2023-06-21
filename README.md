@@ -38,8 +38,27 @@ Este projeto tem o objetivo de fornecer um processo de Extração, Transformaç�
    - **camada_ouro.py** - Popula a tabela de métricas de crescimento por instituicao de ensino e ano.
 
 # Arquitetura
+Arquitetura On-Premisses:
 
 ![Arquitetura](arquitetura/arquitetura.drawio.png)
+
+Arquitetura Cloud:
+
+![Arquitetura](<arquitetura/Arquitetura Cloud v2.png>)
+
+Para o nosso desenho de arquitetura visando um ambiente cloud, decidimos selecionar os seguintes componentes para compor a nossa infraestrutura:
+
+**Amazon S3:**
+Substituindo os bancos de dados SQL para armazenamento dos dados Raw, o S3 é a solução da AWS para armazenamento de grandes volumes de dados em ambiente Cloud, com alta disponibilidade, segurança e performance.
+
+**Glue Catalog:**
+Escolhemos o Glue Catalog para realizar a transformação dos dados do S3 para as diversas camadas, executando através do PySpark um processo de ETL para construção das tabelas Bronze, Silver e Gold. Outro motivo da escolha foi a possibilidade de realizar o processamento de forma distribuída.
+
+**Amazon Redshift:**
+O Redshift é um banco de dados colunar, com o objetivo de ser um Data Warehouse capaz de processar bilhões de registros em segundos. Escolhemos essa ferramenta com o intuito de tornar a solução mais “future-proof”.
+
+**Amazon QuickSight:**
+No lugar do Google Looker Studio temos o Amazon QuickSight, ferramenta da AWS de Business Intelligence para construção de dashboards, realização de análises de dados e Machine Learning.
 
 # Fontes de dados
 
